@@ -28,7 +28,7 @@ Shots informations are in:
 All movieid.txt files are the original shots cut time, we reprocessed them into movieid.clips.json which combines short shots to minimize the error produced during cutting.
 
 
-To cut transpiled movies into movie shots, run the following command:
+To cut transpiled movies into movie shots or to get keyframe screenshots, run the following command:
 
 
-python cut_automated.py /home/wwwroot/default/src
+python cut_automated.py
