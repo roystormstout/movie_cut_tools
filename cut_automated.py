@@ -33,4 +33,3 @@ if __name__ == '__main__':
                     extract_keyframes_from_combined_shots.get_frames(src_dir,file[:-4],int(sys.argv[2]))
                 else:
                     extract_keyframes_from_combined_shots.get_frames(src_dir, file[:-4], 6)
-
