@@ -62,7 +62,7 @@ def ffmpeg_extract_frame(filename, t1, targetname):
     subprocess_call(cmd)
 
 
-def get_frames(root, vid_name):
+def get_frames(root, vid_name, num_of_frame=6):
     video_path = root + "/movie/"
     shots_list = load_split_file(root+'/shots_info/'+vid_name+'.txt')
     vid_path = video_path+vid_name+'.mp4'
@@ -70,30 +70,28 @@ def get_frames(root, vid_name):
     with open(root + "/shots_info/" + vid_name+'.clips.json', 'r') as f:
         data = json.load(f)
 
-    clip_index = 0
+    shot_index = 0
     for clip in data['clips']:
         list = []
         for index in clip['combined_shots']:
             for frame in shots_list[index][2:]:
                 list.append(frame)
-        increment = len(list)/6
+        increment = len(list)/num_of_frame
         i = 0
         final_cut_list=[]
-	print(len(list))
         while i < len(list):
             final_cut_list.append(list[i])
             i += increment
         frame_index=0
         for frame in final_cut_list:
-	    print(float(frame))
-            ffmpeg_extract_frame(vid_path,float(frame)/fps,video_path+vid_name+"/"+str(clip_index)+"_"+str(frame_index)+".jpg")
+            ffmpeg_extract_frame(vid_path,float(frame)/fps,video_path+vid_name+"/"+str(shot_index)+"_"+str(frame_index)+".jpg")
             frame_index += 1
-        clip_index += 1
+        shot_index += 1
 
 
 if __name__ == '__main__':
     print("\n".join(sys.argv))
-    get_frames(sys.argv[1],sys.argv[2])
+    get_frames(sys.argv[1],sys.argv[2],sys.argv[3])
 
 
 
