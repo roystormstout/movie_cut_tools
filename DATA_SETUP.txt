@@ -1,0 +1,34 @@
+﻿All data is in directory:
+
+
+/home/wwwroot/default/src
+
+
+All full movies (transpiled to mp4) are stored in the following format :
+
+
+/home/wwwroot/default/src/movie/movieid.mp4
+
+
+(replace all ‘movieid’ with actual id of movies, eg: ‘tt1234567’)
+
+
+Movie shots are in subdirectory:
+
+
+/home/wwwroot/default/src/movie/movieid/ 
+
+
+Shots informations are in:
+
+
+/home/wwwroot/default/src/movie/shots_info/ 
+
+
+All movieid.txt files are the original shots cut time, we reprocessed them into movieid.clips.json which combines short shots to minimize the error produced during cutting.
+
+
+To cut transpiled movies into movie shots, run the following command:
+
+
+python cut_automated.py /home/wwwroot/default/src
